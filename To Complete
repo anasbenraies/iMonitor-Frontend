@@ -1,0 +1,19 @@
+create the routes for the login
+username and password
+
+
+BACKEND
+    *create the route that authenticate user
+            //must use encryption
+    *create the routes that gets the usages for specific user .
+    *create the subscriber that recieves the usages and store it to database
+
+
+Publisher
+    *create the publisher that send IoT messages .
+
+
+
+
+Front end that is a subscriber .
+fetch usages data for specific logged in user
