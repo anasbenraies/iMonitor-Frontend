@@ -13,6 +13,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT du FROM DeviceUsage du ")
     List<DeviceUsage> findAllWithDeviceAndUser();
 
-    @Query("SELECT u FROM User u WHERE u.email = :email and u.password =:password")
-    User findUserByCredentials(String email, String password);
+    @Query("SELECT u FROM User u WHERE u.email = :email")
+    User findUserByEmail(String email);
 }

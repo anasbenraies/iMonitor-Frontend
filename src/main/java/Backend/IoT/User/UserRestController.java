@@ -4,16 +4,13 @@ package Backend.IoT.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path ="/ressources")
+@RequestMapping(path ="/users")
 public class UserRestController {
 
     private final UserService userService;
@@ -23,14 +20,34 @@ public class UserRestController {
     UserRestController(UserService userService){
         this.userService = userService;
     }
-
-
-
-    @GetMapping(path = "/user")
-    public ResponseEntity<User> getUser(@RequestBody User u){
+    @CrossOrigin(origins = "http://localhost:3001")
+    @PostMapping(path = "/SignUp")
+    public ResponseEntity<?> SignUp(@RequestBody User user){
         try {
-            //this is the user taht we are looking for
-            User user= userService.findUserByCredentials(u.getEmail(),u.getPassword());
+            //this method returns the User if the user is valid or returns null if the user is not valid
+            User SignedUpUser = userService.SignUp(user);
+            if(SignedUpUser!=null){
+                return ResponseEntity.ok(SignedUpUser);
+            }else{
+                //if SignedUpUser is not in a valid form
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The user is not valid for SignUp !");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+
+
+
+
+    //@CrossOrigin(origins = "http://localhost:3001")
+    @PostMapping(path = "/Login")
+    public ResponseEntity<?> getUser(@RequestBody User u){
+        try {
+            //this is the user that we are looking for
+            User user= userService.findUserByEmail(u);
             if(user!=null){
                 return  ResponseEntity.ok(user);
             }else{

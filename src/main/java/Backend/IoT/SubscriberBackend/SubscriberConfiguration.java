@@ -11,7 +11,7 @@ public class SubscriberConfiguration {
     @Bean
     CommandLineRunner commandLineRunner2(SubscriberService subscriberService) {
         return args -> {
-        subscriberService.subscribe("deviceUsage");
+        //subscriberService.subscribe("deviceUsage");
      };
 
      }

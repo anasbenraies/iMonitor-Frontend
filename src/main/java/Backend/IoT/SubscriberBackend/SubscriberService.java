@@ -37,7 +37,7 @@ public class SubscriberService {
             connOpts.setPassword(password.toCharArray());
             mqttClient.connect(connOpts);
             if(mqttClient.isConnected()){
-                System.out.println("backend has connected to the Broker");
+                System.out.println("backend(subscriber) has connected to the Broker");
             }
 
             mqttClient.setCallback(new MqttCallback() {
