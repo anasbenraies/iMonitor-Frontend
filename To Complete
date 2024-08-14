@@ -27,3 +27,9 @@ Todo ;
 jwt login /signup
 authorization on sensitive route .
 front end dashbording
+
+todo:
+    *Try the authentication as mentioneed in the video
+    *the password musn't be shown
+    *design for the rest of the app ( front end part )
+    *code the rest

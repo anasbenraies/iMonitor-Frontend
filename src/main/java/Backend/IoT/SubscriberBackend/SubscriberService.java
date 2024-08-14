@@ -52,10 +52,13 @@ public class SubscriberService {
                     String messageContent = new String(message.getPayload());
                     LOGGER.info("Message received on topic: " + topic + ", content:  " + messageContent);
                     String[] UsageInformation=messageContent.split("/");
-                    DeviceUsage deviceUsage = new DeviceUsage(LocalDate.parse(UsageInformation[0]), Integer.parseInt(UsageInformation[1]),Long.parseLong(UsageInformation[2]));
+                    DeviceUsage deviceUsage = new DeviceUsage(LocalDate.parse(UsageInformation[0]), Integer.parseInt(UsageInformation[1]),Long.parseLong(UsageInformation[2]),Float.parseFloat(UsageInformation[3]));
                     System.out.println("==>"+deviceUsage);
-                    deviceUsageRepository.save(deviceUsage);
-                    System.out.println("DeviceUsage saved in Database .");
+
+                    // this code saves the usageData in the database with the next val of id
+
+                    //deviceUsageRepository.save(deviceUsage);
+                    //System.out.println("DeviceUsage saved in Database .");
                     // Implement handling of received message here
                 }
 

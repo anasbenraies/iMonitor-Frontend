@@ -1,6 +1,7 @@
 package Backend.IoT.User;
 
 
+import Backend.IoT.Config.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,11 +15,14 @@ public class UserService {
 
 
     private final UserRepository userRepository;
+    private final JwtService jwtService ;
 
 
     @Autowired
-        UserService(UserRepository userRepository){
+        UserService(UserRepository userRepository, JwtService jwtService){
             this.userRepository = userRepository;
+            this.jwtService=jwtService ;
+
 
     }
 
@@ -26,7 +30,12 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findUserByEmail(User user) {
+//    public User loadUserByEmail(String email){
+//        User SearchedUser= userRepository.findUserByEmail(email);
+//        return SearchedUser ;
+//    }
+
+    public AuthenticationResponse findUserByEmail(User user) {
         //if not correct password or email return null
         User SearchedUser= userRepository.findUserByEmail(user.getEmail());
         if(SearchedUser==null){
@@ -34,7 +43,10 @@ public class UserService {
         }else {
              BCryptPasswordEncoder bCryptPasswordEncoder= new BCryptPasswordEncoder();
              if(bCryptPasswordEncoder.matches(user.getPassword(),SearchedUser.getPassword())){
-                 return SearchedUser ;
+                 AuthenticationResponse authResp = new AuthenticationResponse(SearchedUser) ;
+                 authResp.setToken(jwtService.generateToken(SearchedUser));
+                 return authResp ;
+                 //return SearchedUser ;
             }else{
                  return null ;
                 }
@@ -42,11 +54,16 @@ public class UserService {
         }
 
 
-    public User SignUp(User user) {
+
+
+    public AuthenticationResponse SignUp(User user) {
         if(IsValidUserForSignUp(user.getEmail(),user.getPassword())){
             BCryptPasswordEncoder bCryptPasswordEncoder= new BCryptPasswordEncoder();
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-            return userRepository.save(user);
+            userRepository.save(user);
+            AuthenticationResponse authResp = new AuthenticationResponse(user) ;
+            authResp.setToken(jwtService.generateToken(user));
+            return authResp ;
         }else{
             //if user not valid for SignUp
             return null ;

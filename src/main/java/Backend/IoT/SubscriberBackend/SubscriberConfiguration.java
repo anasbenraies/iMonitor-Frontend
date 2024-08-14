@@ -7,11 +7,19 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SubscriberConfiguration {
-//
+
+    /**
+     * Creates a CommandLineRunner bean that initializes the subscriber service.
+     *
+     * @param       subscriberService	an instance of the SubscriberService class
+     * @return  	a CommandLineRunner instance that starts the subscriber service
+     */
     @Bean
-    CommandLineRunner commandLineRunner2(SubscriberService subscriberService) {
+    CommandLineRunner SubscriberRunner(SubscriberService subscriberService) {
         return args -> {
-        //subscriberService.subscribe("deviceUsage");
+        System.out.println("Subscribed Started");
+        subscriberService.subscribe("deviceUsage");
+
      };
 
      }

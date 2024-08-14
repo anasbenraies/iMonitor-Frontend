@@ -16,6 +16,8 @@ public class PublishedData {
 
     private Long device_id;
 
+    private Float energy_usage_in_kwh ;
+
 
 
 
@@ -24,6 +26,7 @@ public class PublishedData {
         randomUsageDate();
         randomDuration();
         randomDeviceId();
+        randomEnergyUsage();
     }
 
     public void randomUsageDate(){
@@ -41,8 +44,14 @@ public class PublishedData {
     }
 
     public void randomDeviceId(){
+        // Sending data to device 1 ,2 ,3 and 4
         Random random =new Random();
-        this.device_id= (long) (random.nextInt(2)+1);
+        this.device_id = (long) (random.nextInt(4) + 1);
+    }
+
+    public void randomEnergyUsage(){
+        int durationInMinutes = this.durationInMinutes ;
+        this.energy_usage_in_kwh = durationInMinutes / 100.0f ;
     }
 
 }

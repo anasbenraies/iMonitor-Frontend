@@ -44,12 +44,19 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+//        return List.of(new SimpleGrantedAuthority(role.name()));
+        return role != null ? List.of(new SimpleGrantedAuthority(role.name())) : List.of();
     }
 
+
+    //this method returns the email not the username . username is just the convention name for UserDetails
     @Override
     public String getUsername (){
         return this.username;
+    }
+    @Override
+    public String getPassword(){
+        return this.password ;
     }
     @Override
     public boolean isAccountNonExpired() {
@@ -70,5 +77,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 
 }

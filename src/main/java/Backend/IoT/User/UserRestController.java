@@ -20,12 +20,12 @@ public class UserRestController {
     UserRestController(UserService userService){
         this.userService = userService;
     }
-    @CrossOrigin(origins = "http://localhost:3001")
+
     @PostMapping(path = "/SignUp")
     public ResponseEntity<?> SignUp(@RequestBody User user){
         try {
-            //this method returns the User if the user is valid or returns null if the user is not valid
-            User SignedUpUser = userService.SignUp(user);
+            //this method returns the User(and save it to db) if the user is valid or returns null if the user is not valid
+            AuthenticationResponse SignedUpUser = userService.SignUp(user);
             if(SignedUpUser!=null){
                 return ResponseEntity.ok(SignedUpUser);
             }else{
@@ -44,10 +44,11 @@ public class UserRestController {
 
     //@CrossOrigin(origins = "http://localhost:3001")
     @PostMapping(path = "/Login")
-    public ResponseEntity<?> getUser(@RequestBody User u){
+    public ResponseEntity<?> LoginUser(@RequestBody User u){
         try {
             //this is the user that we are looking for
-            User user= userService.findUserByEmail(u);
+            //AuthenticationResponse is a user with token
+            AuthenticationResponse user= userService.findUserByEmail(u);
             if(user!=null){
                 return  ResponseEntity.ok(user);
             }else{
