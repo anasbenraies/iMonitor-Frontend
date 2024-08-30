@@ -22,13 +22,13 @@ Front end that is a subscriber .
 -realtime fetching from broaker MQTT
 
 
-Todo ;
+Todod ;
     *protected route front
 jwt login /signup
 authorization on sensitive route .
 front end dashbording
 
-todo:
+todos:
     *Try the authentication as mentioneed in the video
     *the password musn't be shown
     *design for the rest of the app ( front end part )
