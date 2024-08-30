@@ -16,6 +16,7 @@ import java.util.Optional;
 public interface DeviceUsageRepository extends JpaRepository<DeviceUsage, Long> {
     @Query("SELECT du FROM DeviceUsage du ")
     List<DeviceUsage> findAllWithDeviceAndUser();
-    @Query("SELECT du FROM DeviceUsage du JOIN du.device d WHERE d.user.id = :userId ORDER BY du.usageDate")
+    //@Query("SELECT du FROM DeviceUsage du JOIN du.device d WHERE d.user.id = :userId ORDER BY du.usageDate")
+    @Query("SELECT du FROM DeviceUsage du JOIN du.device d WHERE d.user.id = :userId")
     List<DeviceUsage> GetUserUsages(Long userId);
 }

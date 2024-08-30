@@ -16,4 +16,20 @@ Publisher
 
 
 Front end that is a subscriber .
-fetch usages data for specific logged in user
+-fetch usages data for specific logged in user from backend
+    *login
+-protected route
+-realtime fetching from broaker MQTT
+
+
+Todo ;
+    *protected route front
+jwt login /signup
+authorization on sensitive route .
+front end dashbording
+
+todo:
+    *Try the authentication as mentioneed in the video
+    *the password musn't be shown
+    *design for the rest of the app ( front end part )
+    *code the rest

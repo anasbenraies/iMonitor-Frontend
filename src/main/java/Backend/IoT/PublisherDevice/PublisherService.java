@@ -29,7 +29,7 @@ public class PublisherService {
             connOpts.setPassword(password.toCharArray());
             mqttClient.connect(connOpts);
             if(mqttClient.isConnected()){
-                System.out.println("IoT device has connected to the Broker");
+                System.out.println("IoT device is Sending Data to the Broker");
             }
 
             MqttMessage message = new MqttMessage(messageContent.getBytes());

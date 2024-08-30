@@ -31,15 +31,20 @@ public class DeviceUsage {
     @Column(name = "duration_in_minutes")
     private int durationInMinutes;
 
+    @Column(name = "energy_usage_in_kwh")
+    private Float energy_usage_in_kwh;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "device_id", nullable = false)
     private Device device;
 
-    public DeviceUsage(LocalDate usageDate, int durationInMinutes, Long deviceId) {
+    public DeviceUsage(LocalDate usageDate, int durationInMinutes, Long deviceId,Float energy_usage_in_kwh) {
         this.usageDate = usageDate;
         this.durationInMinutes = durationInMinutes;
         this.device = new Device();
+        this.energy_usage_in_kwh=energy_usage_in_kwh;
         this.device.setId(deviceId);
+
     }
     // Other attributes, constructors, getters, and setters
 }
