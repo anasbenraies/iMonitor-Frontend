@@ -14,13 +14,13 @@ public class SubscriberConfiguration {
      * @param       subscriberService	an instance of the SubscriberService class
      * @return  	a CommandLineRunner instance that starts the subscriber service
      */
-    @Bean
-    CommandLineRunner SubscriberRunner(SubscriberService subscriberService) {
-        return args -> {
-        System.out.println("Subscribed Started");
-        subscriberService.subscribe("deviceUsage");
-
-     };
-
-     }
+//    @Bean
+//    CommandLineRunner SubscriberRunner(SubscriberService subscriberService) {
+//        return args -> {
+//        System.out.println("Subscribed Started");
+//        subscriberService.subscribe("deviceUsage");
+//
+//     };
+//
+//     }
 }

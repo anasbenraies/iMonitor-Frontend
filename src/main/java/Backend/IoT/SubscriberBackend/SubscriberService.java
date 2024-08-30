@@ -59,7 +59,6 @@ public class SubscriberService {
 
                     //deviceUsageRepository.save(deviceUsage);
                     //System.out.println("DeviceUsage saved in Database .");
-                    // Implement handling of received message here
                 }
 
                 @Override
